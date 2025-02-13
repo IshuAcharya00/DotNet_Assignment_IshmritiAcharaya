@@ -1,0 +1,62 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="container text-center mt-5">
+        <div class="jumbotron bg-light p-5 shadow rounded">
+            <h1 class="display-4 text-primary fw-bold">Welcome to School Management System</h1>
+            <p class="lead text-secondary">
+                Manage school operations efficiently and effectively with our system.
+            </p>
+            <hr class="my-4">
+            <p class="text-muted">Track student records, classes, and more with ease.</p>
+            <a class="btn btn-primary btn-lg mt-3" href="@Url.Action("Create", "Admins")">Register Student</a>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card shadow-lg p-3">
+                    <img src="https://source.unsplash.com/300x200/?students,education" class="card-img-top rounded" alt="Student Information">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">View Students</h5>
+                        <p class="card-text">Manage student details including personal information, academic records, and more.</p>
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Admins")">View Students</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-lg p-3">
+                    <img src="https://source.unsplash.com/300x200/?classroom,school" class="card-img-top rounded" alt="Class Management">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Manage Classes</h5>
+                        <p class="card-text">Organize classes, assign students, and manage schedules seamlessly.</p>
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Manages")">Manage Classes</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-lg p-3">
+                    <img src="https://source.unsplash.com/300x200/?registration,school" class="card-img-top rounded" alt="Register Student">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Register Student</h5>
+                        <p class="card-text">Easily register new students to the school management system.</p>
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Teachers")">View Teachers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
